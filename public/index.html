@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fleet Tracker — Live Vehicle Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <div class="logo" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 13l2-5h14l2 5v5a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-1H7v1a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-5z"/>
+          <circle cx="7" cy="16" r="1"/><circle cx="17" cy="16" r="1"/>
+        </svg>
+      </div>
+      <span class="brand-name">Fleet<span class="brand-accent">Tracker</span></span>
+    </div>
+    <nav class="site-nav">
+      <a href="#overview">Overview</a>
+      <a href="#live">Live Feed</a>
+      <a href="#api">API</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="overview">
+      <div class="hero-text">
+        <p class="eyebrow">Live vehicle intelligence</p>
+        <h1>Monitor your fleet in real time.</h1>
+        <p class="hero-sub">
+          400 vehicles across five regions, streaming live position updates every 5&nbsp;seconds.
+          A clean API and WebSocket feed — nothing else.
+        </p>
+        <div class="hero-actions">
+          <a href="#live" class="btn btn-primary">See live feed</a>
+          <a href="/api/vehicles" class="btn btn-ghost" target="_blank" rel="noopener">Open API</a>
+        </div>
+      </div>
+      <div class="hero-card" aria-hidden="true">
+        <div class="hero-card-row">
+          <span class="dot dot-green"></span><span>Connected</span>
+          <span class="hero-card-id">ws://localhost:4000/positions</span>
+        </div>
+        <div class="hero-card-bar"><span></span></div>
+        <div class="hero-card-metrics">
+          <div><strong id="metric-vehicles">400</strong><span>Vehicles</span></div>
+          <div><strong id="metric-active">—</strong><span>Active</span></div>
+          <div><strong id="metric-updates">0</strong><span>Updates</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats" aria-label="Fleet summary">
+      <article class="stat">
+        <p class="stat-label">Total vehicles</p>
+        <p class="stat-value" id="stat-total">400</p>
+      </article>
+      <article class="stat">
+        <p class="stat-label">Active</p>
+        <p class="stat-value" id="stat-active">—</p>
+      </article>
+      <article class="stat">
+        <p class="stat-label">Idle</p>
+        <p class="stat-value" id="stat-idle">—</p>
+      </article>
+      <article class="stat">
+        <p class="stat-label">In maintenance</p>
+        <p class="stat-value" id="stat-maint">—</p>
+      </article>
+    </section>
+
+    <section class="panel" id="live">
+      <div class="panel-header">
+        <h2>Live position feed</h2>
+        <span class="pill" id="ws-status">Connecting…</span>
+      </div>
+      <div class="feed" id="feed">
+        <div class="feed-empty">Waiting for the next position update…</div>
+      </div>
+    </section>
+
+    <section class="panel" id="api">
+      <div class="panel-header">
+        <h2>API endpoints</h2>
+      </div>
+      <ul class="endpoints">
+        <li><span class="method get">GET</span><code>/api/vehicles</code><span class="desc">Returns the full list of 400 vehicles.</span></li>
+        <li><span class="method ws">WS</span><code>ws://localhost:4000/positions</code><span class="desc">Streams a position update every 5 seconds.</span></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>© <span id="year"></span> FleetTracker</span>
+    <span class="footer-sep">•</span>
+    <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>
