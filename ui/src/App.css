@@ -1,0 +1,21 @@
+.app { max-width: 900px; margin: 2rem auto; font-family: system-ui, sans-serif; }
+.filter-bar { display: flex; gap: 1rem; margin-bottom: 1rem; }
+.filter-bar label { display: flex; flex-direction: column; font-size: 0.85rem; }
+.filter-bar select { margin-top: 0.25rem; padding: 0.3rem; }
+.vehicle-list-container { border: 1px solid #ddd; border-radius: 6px; }
+.vehicle-row {
+  display: grid;
+  grid-template-columns: 90px 100px 80px 90px 1fr;
+  align-items: center;
+  padding: 0 12px;
+  border-bottom: 1px solid #eee;
+  outline: none;
+}
+.vehicle-row.focused { background: #eff6ff; box-shadow: inset 3px 0 0 #2563eb; }
+.vehicle-row:focus-visible { outline: 2px solid #2563eb; outline-offset: -2px; }
+.cell { font-size: 0.9rem; }
+.status-active { color: #059669; }
+.status-idle { color: #d97706; }
+.status-maintenance { color: #7c3aed; }
+.status-offline { color: #dc2626; }
+.empty-state { padding: 2rem; text-align: center; color: #666; }
