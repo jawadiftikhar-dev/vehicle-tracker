@@ -5,7 +5,8 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/api': 'http://localhost:4000',
+      '/positions': { target: 'ws://127.0.0.1:4000', ws: true },
+      '/api': 'http://127.0.0.1:4000',
     },
   },
 })
