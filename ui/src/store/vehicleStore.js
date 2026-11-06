@@ -1,5 +1,3 @@
-// External store with per-vehicle subscriptions.
-
 const vehicles = new Map();          // id -> vehicle object
 const listeners = new Map();         // id -> Set<callback>
 const globalListeners = new Set();   // notified on any change (for map/banner)
