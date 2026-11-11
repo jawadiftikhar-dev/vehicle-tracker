@@ -113,7 +113,9 @@ function prependFeedCard({ vehicle }) {
 
   const card = document.createElement('div');
   card.className = 'feed-card';
-  card.innerHTML = `
+
+  // Build raw HTML string first
+  const rawHtml = `
     <div class="feed-card-head">
       <span class="feed-card-id">${vehicle.id}</span>
       <span class="feed-card-status ${vehicle.status}">${vehicle.status}</span>
@@ -122,6 +124,12 @@ function prependFeedCard({ vehicle }) {
       ${vehicle.lat.toFixed(4)}, ${vehicle.lng.toFixed(4)} · ${vehicle.speed} km/h
     </div>
   `;
+
+  // Sanitize all dynamic HTML before insertion (Task 4 requirement)
+  card.innerHTML = DOMPurify.sanitize(rawHtml, {
+    ALLOWED_TAGS: ['div', 'span'],
+    ALLOWED_ATTR: ['class'],
+  });
 
   feed.prepend(card);
   while (feed.children.length > 12) feed.lastElementChild.remove();
